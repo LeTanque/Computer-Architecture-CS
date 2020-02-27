@@ -1,21 +1,21 @@
 """CPU functionality."""
-
 import sys
 
 class CPU:
-    """Main CPU class."""
+    def __init__(self):     # Construct a new CPU
+        self.pc = 0                         #: Program Counter
+        self.ir = None                      #: Instruction Register
 
-    def __init__(self):
-        """Construct a new CPU."""
-        pass
+        self.ram = [0] * 256                #: Init as array of zeros
+        self.reg = [0] * 8                  #: Register fixed number
+        
+        self.fl = { "RUNNING": False }      #: Flags
 
     def load(self):
-        """Load a program into memory."""
-
-        address = 0
+        # Load a program into memory. First method called from ls8
+        address = 0                     
 
         # For now, we've just hardcoded a program:
-
         program = [
             # From print8.ls8
             0b10000010, # LDI R0,8
@@ -30,36 +30,39 @@ class CPU:
             self.ram[address] = instruction
             address += 1
 
-
+    # Arithmatic and logic unit
     def alu(self, op, reg_a, reg_b):
         """ALU operations."""
-
         if op == "ADD":
             self.reg[reg_a] += self.reg[reg_b]
-        #elif op == "SUB": etc
+        elif op == "SUB":
+            pass
         else:
             raise Exception("Unsupported ALU operation")
 
-    def trace(self):
-        """
-        Handy function to print out the CPU state. You might want to call this
-        from run() if you need help debugging.
-        """
+    def ram_read(self, counter):        #: Read the ram
+        return self.ram[counter]
+    
+    def ram_write(self, payload):       #: Write the ram
+        pass
 
-        print(f"TRACE: %02X | %02X %02X %02X |" % (
-            self.pc,
-            #self.fl,
-            #self.ie,
+    def trace(self):
+        print(f"\nTRACE: %02X | %02X %02X %02X %02X \n" % (
+            self.pc,        #: 0
+            #self.fl,       #: Flags
+            #self.ie,       #: Might have something to do with interrupts
             self.ram_read(self.pc),
             self.ram_read(self.pc + 1),
-            self.ram_read(self.pc + 2)
+            self.ram_read(self.pc + 2),
+            self.ram_read(self.pc + 3)
         ), end='')
 
         for i in range(8):
-            print(" %02X" % self.reg[i], end='')
+            print(": %02X" % self.reg[i], end='\n')
 
         print()
 
     def run(self):
-        """Run the CPU."""
-        pass
+        self.fl["RUNNING"] = True
+        self.trace()
+        self.fl["RUNNING"] = False

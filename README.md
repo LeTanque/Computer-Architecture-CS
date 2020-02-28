@@ -37,3 +37,75 @@
 - [ ] Add the timer interrupt to the LS-8 emulator
 - [ ] Add the keyboard interrupt to the LS-8 emulator
 - [ ] Write an LS-8 assembly program to draw a curved histogram on the screen
+
+
+##### Notes
+watch number bases and conversions
+two videos from day 1
+this video about the stack day 3
+converting between number types
+what is a cpu register
+
+###### Number types
+> Decimal - You know it already. Decimal is \
+0 1 2 3 4 5 6 7 8 9 \
+Base 10
+
+> Binary - two numbers, 0 1. Base 2. Bit
+
+> Hexadecimal - base 16 \
+0 1 2 3 4 5 6 7 8 9 A B C D E F \
+
+> Octal - base 8. 0 1 2 3 4 5 6 7. No one uses it.
+
+###### Terminology
+byte: 8 bits. aka octet. max val: 255 decimal, FF hex
+nibble: 4 bits. rarely used. Max val: 15 decimal, F hex
+
+###### Binary
++----------128s place
+|+---------64s place
+||+--------32s place
+|||+-------16s place
+||||+------8s place
+|||||+-----4s place
+||||||+----2s place
+|||||||+---1s place
+||||||||
+01010110
+
+       0 = 0
+       1 = 1
+      10 = 2
+      11 = 3
+     100 = 4
+
+01010110
+        0
+        64
+        0
+        16
+        0
+        4
+        2
+
+
+
+###### Binary to hex
+10100011 split it in half, 4s
+
+1010 0011
+            1 + 2 = 3
+            2 + 8 = 10 = A
+A3 = 10100011
+
+
+C7
+
+0000 0000
+            C = 12 = 8 + 4 = 1100
+            7 = 4 + 2 + 1 = 0111
+11000111 = C7
+
+
+###### 

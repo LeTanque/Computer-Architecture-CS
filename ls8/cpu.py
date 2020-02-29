@@ -210,8 +210,6 @@ class CPU:
                 self.NOP(op_a, op_b)
                 self.pc += 1
 
-            
-
             if op_b == HLT and check_end == 0:
                 self.HLT()
 

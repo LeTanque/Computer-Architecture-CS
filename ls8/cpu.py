@@ -1,4 +1,3 @@
-"""CPU functionality."""
 import sys
 import re
 
